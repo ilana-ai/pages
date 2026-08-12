@@ -16,6 +16,7 @@
       --line: #efe6f1;
       --link: #e0568a;
       --cherry: #c42348;
+      --deepblue: #16295c;
       --card: #ffffff;
       --soft: #f9f2fb;
       --maxw: 640px;
@@ -63,50 +64,94 @@
     .card {
       background: var(--card);
       border-radius: clamp(20px, 4vw, 28px);
-      padding: clamp(30px, 6vw, 56px);
+      padding: clamp(12px, 2.2vw, 15px) clamp(30px, 6vw, 56px) clamp(30px, 6vw, 56px);
       box-shadow:
         0 20px 50px -18px rgba(90, 45, 70, .22),
         0 6px 18px -8px rgba(90, 45, 70, .12);
       animation: rise .6s cubic-bezier(.2, .7, .2, 1) both;
     }
 
-    .badge {
-      width: 78px;
-      height: 78px;
-      margin: 0 auto;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #ff9a6c 0%, #ff6f91 100%);
-      box-shadow: 0 12px 26px -8px rgba(255, 111, 145, .6);
-      animation: pop .5s .15s cubic-bezier(.2, 1.3, .4, 1) both;
+    .logo {
+      display: block;
+      width: clamp(108px, 32%, 138px);
+      height: auto;
+      margin: 0 auto 2px;
+      animation: pop .5s .05s cubic-bezier(.2, 1.3, .4, 1) both;
     }
-    .badge svg {
-      width: 40px;
-      height: 40px;
-      fill: none;
-      stroke: #fff;
-      stroke-width: 2.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+
+    .hero-row {
+      display: grid;
+      grid-template-columns: 46% 1fr;
+      gap: clamp(18px, 4vw, 34px);
+      align-items: center;
+      margin-top: clamp(12px, 3vw, 20px);
+    }
+
+    .photo-wrap { position: relative; }
+
+    .portrait-frame {
+      padding: 4px;
+      background: linear-gradient(135deg, #ff9a6c 0%, #e0568a 55%, #b88eff 100%);
+      border-radius: clamp(20px, 4.5vw, 26px);
+      box-shadow:
+        0 18px 40px -14px rgba(90, 45, 70, .4),
+        0 6px 16px -8px rgba(90, 45, 70, .22);
+      animation: pop .5s .12s cubic-bezier(.2, 1.3, .4, 1) both;
+    }
+    .portrait-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: clamp(16px, 4vw, 22px);
+      border: 3px solid #fff;
+    }
+
+    /* nitsotsot - CSS-only, per pages/landing-pages/animations.md (no JS, no rotate) */
+    .sparkles {
+      position: absolute;
+      inset: -16px -14px -10px -14px;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .spark {
+      position: absolute;
+      opacity: 0;
+      color: #fff;
+      text-shadow: 0 0 7px rgba(224, 86, 138, .78);
+      will-change: transform, opacity;
+      user-select: none;
+      animation: spark-rise 6s linear infinite;
+    }
+    .spark.k1 { top: 4%;  inset-inline-start: -6px;  font-size: 18px; animation-delay: 0s;    }
+    .spark.k2 { top: 30%; inset-inline-start: -12px; font-size: 13px; animation-delay: -2s;   }
+    .spark.k3 { top: 62%; inset-inline-start: -4px;  font-size: 20px; animation-delay: -4s;   }
+    .spark.k4 { top: 12%; inset-inline-end: -8px;    font-size: 15px; animation-delay: -1.2s; }
+    .spark.k5 { top: 46%; inset-inline-end: -12px;   font-size: 19px; animation-delay: -3.2s; }
+    .spark.k6 { top: 78%; inset-inline-end: -6px;    font-size: 14px; animation-delay: -5s;   }
+
+    @media (max-width: 560px) {
+      .hero-row { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
+      .photo-wrap { width: min(74%, 240px); }
     }
 
     .hero {
-      margin: 24px 0 0;
+      margin: 0;
       font-size: clamp(20px, 3.9vw, 27px);
       font-weight: 800;
+      color: var(--deepblue);
       line-height: 1.4;
       letter-spacing: -0.01em;
     }
 
     .sub {
-      margin: 16px auto 0;
-      max-width: 44ch;
-      font-size: clamp(17px, 2.4vw, 19px);
+      margin: 0;
+      font-size: clamp(17px, 2.6vw, 20px);
       line-height: 1.6;
       font-weight: 500;
       color: var(--cherry);
+      text-align: start;
     }
+    @media (max-width: 560px) { .sub { text-align: center; } }
 
     .divider {
       height: 1px;
@@ -114,32 +159,71 @@
       margin: clamp(28px, 5vw, 38px) 0;
       border: 0;
     }
+    .divider.tight { margin: clamp(12px, 2.6vw, 16px) 0; }
 
     .tasks { text-align: start; }
     .tasks h2 {
-      margin: 0;
-      font-size: clamp(18px, 3vw, 21px);
-      font-weight: 700;
+      font-size: clamp(19.5px, 3.3vw, 23px);
+      font-weight: 800;
       text-align: center;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #ff7a45 0%, #e0568a 50%, #a678ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .tasks-note {
+      margin: 8px 0 0;
+      text-align: center;
+      color: var(--ink);
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .tasks-hint {
+      margin: 3px 0 0;
+      text-align: center;
+      color: var(--ink);
+      font-size: 14px;
     }
 
     /* Placeholder — יוחלף בתוכן המשימות */
-    .soon {
-      margin-top: 18px;
-      padding: 22px 20px;
+    .task {
+      margin-top: 16px;
+      padding: 18px 20px;
       background: var(--soft);
       border: 1px solid var(--line);
       border-radius: 16px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 15px;
+      text-align: start;
     }
-    .soon strong {
+    .task-title {
       display: block;
-      margin-bottom: 4px;
-      color: var(--ink);
+      margin-bottom: 8px;
+      color: var(--deepblue);
+      font-weight: 800;
       font-size: 16px;
+      text-align: center;
     }
+    .task-action {
+      margin: 0 0 8px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .task-action a {
+      color: var(--cherry);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .task-desc {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+    .task-desc:last-child { margin-bottom: 0; }
 
     .brand {
       margin-top: 22px;
@@ -153,7 +237,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .card, .badge { animation: none; }
+      .card, .portrait-frame { animation: none; }
     }
 
     @keyframes rise {
@@ -164,6 +248,12 @@
       from { opacity: 0; transform: scale(.6); }
       to   { opacity: 1; transform: scale(1); }
     }
+    @keyframes spark-rise {
+      0%   { transform: translateY(12px)  scale(.35); opacity: 0; }
+      18%  { opacity: 1; }
+      55%  { transform: translateY(-10px) scale(1);   opacity: 1; }
+      100% { transform: translateY(-34px) scale(.45); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -172,13 +262,28 @@
 
   <main class="page">
     <div class="card">
-      <div class="badge" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" /></svg>
-      </div>
+      <img class="logo" src="logo-good-life.png" alt="החיים הטובים" width="460" height="192" />
+
+      <hr class="divider tight" />
 
       <h1 class="hero">היי, איזה כיף שנרשמת לשיעור הפרטי! ❤️😊 אני מצפה לפגוש אותך ולהתחיל לבנות חיים יעילים וכיפים יותר.</h1>
 
-      <p class="sub">בשביל להוציא את המקסימום מהפגישה שלנו, הכנתי בשבילך כמה משימות מקדימות שכדאי שתעשי לפני השיעור.</p>
+      <div class="hero-row">
+        <div class="photo-wrap">
+          <div class="portrait-frame">
+            <img src="ilana-portrait.jpg" alt="אילנה" width="560" height="995" loading="eager" />
+          </div>
+          <div class="sparkles" aria-hidden="true">
+            <span class="spark k1">✨</span>
+            <span class="spark k2">✦</span>
+            <span class="spark k3">✧</span>
+            <span class="spark k4">⋆</span>
+            <span class="spark k5">✨</span>
+            <span class="spark k6">✦</span>
+          </div>
+        </div>
+        <p class="sub">בשביל להוציא את המקסימום מהפגישה שלנו, הכנתי<br />בשבילך כמה משימות מקדימות שכדאי שתעשי/ה לפני השיעור.</p>
+      </div>
 
       <hr class="divider" />
 
@@ -187,8 +292,19 @@
       <!-- ============================================================ -->
       <section class="tasks">
         <h2>משימות מקדימות</h2>
-        <div class="soon"><strong>משימה 1</strong>התוכן יתווסף כאן בקרוב 🌱</div>
-        <div class="soon"><strong>משימה 2</strong>התוכן יתווסף כאן בקרוב 🌱</div>
+        <p class="tasks-note">יש לעשות מהמחשב</p>
+        <p class="tasks-hint">* לחצ/י על השמות שבצבע אדום ויפתח לך קישור ישיר</p>
+        <div class="task">
+          <strong class="task-title">משימה 1</strong>
+          <p class="task-action">תוריד/י את התוכנה <a href="https://wisprflow.ai/" target="_blank" rel="noopener">Wispr Flow</a></p>
+          <p class="task-desc">באמצעות התוכנה הזאת תוכל/י לדבר עם קלוד ממש כמו עם עובד אנושי שיושב מולך ומקשיב.</p>
+          <p class="task-desc">התוכנה היא בחינם (אבל אם תדבר/י הרבה כמוני, אז יהיה צריך לשדרג בתשלום סמלי כלשהו).</p>
+        </div>
+        <div class="task">
+          <strong class="task-title">משימה 2</strong>
+          <p class="task-action">תירשמ/י ל-<a href="https://www.notion.so/signup" target="_blank" rel="noopener">Notion</a> זה בחינם</p>
+          <p class="task-desc">אנחנו ניעזר בזה במהלך השיעור ואחריו.</p>
+        </div>
       </section>
     </div>
 
