@@ -15,6 +15,7 @@
       --muted: #746b7e;
       --line: #efe6f1;
       --link: #e0568a;
+      --cherry: #c42348;
       --card: #ffffff;
       --soft: #f9f2fb;
       --maxw: 640px;
@@ -92,7 +93,7 @@
 
     .hero {
       margin: 24px 0 0;
-      font-size: clamp(23px, 4.6vw, 33px);
+      font-size: clamp(20px, 3.9vw, 27px);
       font-weight: 800;
       line-height: 1.4;
       letter-spacing: -0.01em;
@@ -101,9 +102,10 @@
     .sub {
       margin: 16px auto 0;
       max-width: 44ch;
-      font-size: clamp(16px, 2.2vw, 17.5px);
+      font-size: clamp(17px, 2.4vw, 19px);
       line-height: 1.6;
-      color: var(--muted);
+      font-weight: 500;
+      color: var(--cherry);
     }
 
     .divider {
@@ -131,6 +133,12 @@
       text-align: center;
       color: var(--muted);
       font-size: 15px;
+    }
+    .soon strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 16px;
     }
 
     .brand {
@@ -179,7 +187,8 @@
       <!-- ============================================================ -->
       <section class="tasks">
         <h2>משימות מקדימות</h2>
-        <div class="soon">התוכן יתווסף כאן ממש בקרוב 🌱</div>
+        <div class="soon"><strong>משימה 1</strong>התוכן יתווסף כאן בקרוב 🌱</div>
+        <div class="soon"><strong>משימה 2</strong>התוכן יתווסף כאן בקרוב 🌱</div>
       </section>
     </div>
 
